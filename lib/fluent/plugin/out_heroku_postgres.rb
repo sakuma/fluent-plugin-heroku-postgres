@@ -4,11 +4,9 @@ class Fluent::HerokuPostgresOutput < Fluent::BufferedOutput
   include Fluent::SetTimeKeyMixin
   include Fluent::SetTagKeyMixin
 
-  config_param :host, :string
-  config_param :port, :integer, :default => nil
-  config_param :database, :string
-  config_param :username, :string
-  config_param :password, :string, :default => ''
+  attr_accessor :host, :port, :database, :username, :password
+
+  config_param :heroku_postgres_url, :string
 
   config_param :key_names, :string, :default => nil # nil allowed for json format
   config_param :sql, :string, :default => nil
@@ -27,6 +25,8 @@ class Fluent::HerokuPostgresOutput < Fluent::BufferedOutput
   # We don't currently support mysql's analogous json format
   def configure(conf)
     super
+
+    parse_heroku_postgres_url!
 
     if @format == 'json'
       @format_proc = Proc.new{|tag, time, record| record.to_json}
@@ -70,5 +70,16 @@ class Fluent::HerokuPostgresOutput < Fluent::BufferedOutput
       handler.exec_prepared("write", data)
     }
     handler.close
+  end
+
+  private
+
+  def parse_heroku_postgres_url!
+    parsed_url = URI.parse(@heroku_postgres_url)
+    @host = parsed_url.host
+    @port = parsed_url.port
+    @database = parsed_url.path.sub(/\//, '')
+    @username = parsed_url.user
+    @password = parsed_url.password
   end
 end
