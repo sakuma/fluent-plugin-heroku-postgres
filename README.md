@@ -1,6 +1,6 @@
-# Fluent::Plugin::Heroku::Postgres
+# Fluentd Plugin for Heroku Postgres
 
-TODO: Write a gem description
+td-agent on Heroku.
 
 ## Installation
 
@@ -12,13 +12,32 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install fluent-plugin-heroku-postgres
-
 ## Usage
 
-TODO: Write usage instructions here
+* example
+
+### td-agent-conf.rb
+
+※  Not 'td-agent.conf'
+
+```ruby
+# td-agent-conf.rb
+
+match('postgres.**') {
+  type :heroku_postgres
+
+  heroku_postgres_url "#{::ENV['DATABASE_URL']}"
+  key_names 'name'
+  sql "INSERT INTO vendors (name) VALUES ($1)"
+}
+```
+
+### Procfile
+
+```
+web: bundle exec fluentd -c td-agent-conf.rb -i "source { type :http; port $PORT }" -vv
+```
+
 
 ## Contributing
 
