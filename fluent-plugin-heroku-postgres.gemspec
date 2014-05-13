@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "fluent-plugin-heroku-postgres"
   spec.version       = Fluent::Plugin::Heroku::Postgres::VERSION
   spec.authors       = ["Naohiro Sakuma"]
-  spec.email         = ["n.sakuma@everyleaf.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.email         = ["nao.bear@gmail.com"]
+  spec.summary       = %q{fluent plugin to insert on Heroku Postgre.}
+  spec.description   = %q{fluent plugin to insert on Heroku Postgre.}
+  spec.homepage      = "https://github.com/n-sakuma/fluent-plugin-heroku-postgres"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -18,6 +18,6 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.5"
+  spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
 end
