@@ -38,6 +38,22 @@ match('postgres.**') {
 web: bundle exec fluentd -c td-agent-conf.rb -i "source { type :http; port $PORT }" -vv
 ```
 
+## Option
+
+### Basic Authentication
+
+* Using ":basic_auth_http" source type
+
+```
+# Procfile
+web: bundle exec fluentd -c td-agent-conf.rb -i "source { type :basic_auth_http; port $PORT }" -vv
+```
+
+* Set ENV on Heroku config
+
+USERNAME=name
+PASSWORD=passwd
+
 
 ## Contributing
 
