@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "fluent-plugin-heroku-postgres"
-  spec.version       = '0.0.4'
+  spec.version       = '0.0.5'
   spec.authors       = ["Naohiro Sakuma"]
   spec.email         = ["nao.bear@gmail.com"]
   spec.summary       = %q{fluent plugin to insert on Heroku Postgre.}
   spec.description   = %q{This gem is fluent plugin to insert on Heroku Postgre.}
-  spec.homepage      = "https://github.com/n-sakuma/fluent-plugin-heroku-postgres"
+  spec.homepage      = "https://github.com/sakuma/fluent-plugin-heroku-postgres"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
